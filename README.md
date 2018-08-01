@@ -1,4 +1,4 @@
-# slackInsults
+# Slack Insults
 
 Pass in your slack workspace, along with your username and password, and see random slackbot responses get generated
 
