@@ -45,7 +45,7 @@ public class SlackBotIT extends Selenified {
         App app = this.apps.get();
         login(app);
         String word = getRandomWord(app, new Pair("n", "35"));
-        String phrase = getRandomNutscape(app, word);
+        String phrase = getRandomNutscape(app);
         addResponse(app, word, phrase);
         finish();
     }
@@ -120,10 +120,10 @@ public class SlackBotIT extends Selenified {
         return newPhrase;
     }
 
-    private String getRandomNutscape(App app, String phrase) {
+    private String getRandomNutscape(App app) {
         app.openNewWindow("https://www.google.com/");
         Element search = app.newElement(Locator.NAME, "q");
-        search.type(phrase + " nutscape");
+        search.type("nutscape");
         search.submit();
         app.newElement(Locator.ID, "ires").waitFor().displayed();
         app.newElement(Locator.LINKTEXT, "Images").click();
