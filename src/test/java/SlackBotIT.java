@@ -17,7 +17,7 @@ public class SlackBotIT extends Selenified {
     @BeforeClass(alwaysRun = true)
     public void beforeClass(ITestContext test) {
         // set the base URL for the tests here
-        setTestSite(this, test,
+        setAppURL(this, test,
                 "https://" + System.getProperty("slack.workspace") + ".slack" + ".com/?redir=%2Fcustomize%2Fslackbot");
 
         users.add("Adam");
@@ -65,7 +65,7 @@ public class SlackBotIT extends Selenified {
         newSet.findChild(app.newElement(Locator.CLASSNAME, "save_response_button")).click();
         Element saved = newSet.findChild(app.newElement(Locator.XPATH,
                 "//button[contains(@class,'save_response_button')]/span[text" + "()='Saved']"));
-        saved.waitFor().displayed();
+        saved.waitForState().displayed();
         saved.assertState().displayed();
     }
 
@@ -125,10 +125,10 @@ public class SlackBotIT extends Selenified {
         Element search = app.newElement(Locator.NAME, "q");
         search.type("nutscape");
         search.submit();
-        app.newElement(Locator.ID, "ires").waitFor().displayed();
+        app.newElement(Locator.ID, "ires").waitForState().displayed();
         app.newElement(Locator.LINKTEXT, "Images").click();
         Element element = app.newElement(Locator.CLASSNAME, "rg_bx");
-        element.waitFor().displayed();
+        element.waitForState().displayed();
         element.setMatch(new Random().nextInt(element.get().matchCount()));
         Element metaData = element.findChild(app.newElement(Locator.CLASSNAME, "rg_meta"));
         JsonParser parser = new JsonParser();
